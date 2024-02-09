@@ -33,6 +33,7 @@ const adminSchema = Joi.object({
 const loginSchema = Joi.object({
     email: Joi.string().email({ minDomainSegments: 2 }),
     password: Joi.string().min(8).max(30).required(),
+    type: Joi.string().valid("borrower", "admin"),
 });
 
 module.exports = {
