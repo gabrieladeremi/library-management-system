@@ -35,6 +35,41 @@ exports.registerService = async (fullName, email, password) => {
 };
 
 /**
+ * Creates a new account service with the given user details.
+ *
+ * @param {string} fullName - the full name of the user
+ * @param {string} email - the email of the user
+ * @param {string} address - the address of the user
+ * @param {string} phoneNumber - the phone number of the user
+ * @param {string} password - the password of the user
+ * @return {boolean} true if the account is created successfully
+ */
+exports.createBorrowerAccountService = async (fullName, email, address, phoneNumber, password) => {
+    email = email.toLowerCase().trim();
+
+    const user = await Borrower.findOne({ email: email });
+
+    if (user) {
+        throw new BadRequestError(
+            'User already registered with this email address'
+        );
+    }
+
+    const newUserDetails = await new Borrower({
+        fullName: fullName.trim(),
+        email: email.toLowerCase().trim(),
+        address: address,
+        phoneNumber: phoneNumber,
+        password: password,
+    });
+
+    await newUserDetails.save();
+
+    return true;
+};
+
+
+/**
  * Function to handle user login.
  *
  * @param {string} email - The user's email
