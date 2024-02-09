@@ -27,9 +27,11 @@ const bookSchema = new Schema({
     },
     copies: {
         type: Number,
+        default: 0
     },
     borrowedCopyCount: {
         type: Number,
+        default: 0
     },
     publishedAt: {
         type: Date,

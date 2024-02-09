@@ -9,6 +9,7 @@ const { db } = require('./connection/mongoDb');
 const authRoutes = require('./routes/auth');
 const authorRoutes = require('./routes/author');
 const bookRoutes = require('./routes/book');
+const borrowerRoutes = require('./routes/borrower');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -31,6 +32,7 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/author', authorRoutes);
 app.use('/api/book', bookRoutes);
+app.use('/api/borrower', borrowerRoutes);
 
 app.use((error, req, res, next) => {
     const statusCode = error.statusCode || 500;
