@@ -1,5 +1,3 @@
-const { session } = require("../connection/mongoDb");
-
 const { NotFoundError } = require("../response/responseMessage");
 const AppSuccess = require("../response/responseProcessor");
 

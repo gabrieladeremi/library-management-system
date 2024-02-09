@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const hashPassword = require("../security/hash");
+const { hashPassword } = require("../security/hash");
 
 const Schema = mongoose.Schema;
 
