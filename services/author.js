@@ -95,7 +95,6 @@ exports.viewAuthorService = async (id) => {
     if(!author) {
         throw new NotFoundError('Author not found');
     }
-    console.log('author', author);
 
     return author;
 }

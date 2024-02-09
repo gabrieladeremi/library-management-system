@@ -14,6 +14,7 @@ const bookSchema = new Schema({
     isbn: {
         type: String,
         required: [true, 'Please provide an ISBN'],
+        unique: true,
     },
     genre: {
         type: String,
@@ -24,7 +25,10 @@ const bookSchema = new Schema({
     description: {
         type: String,
     },
-    quantity: {
+    copies: {
+        type: Number,
+    },
+    borrowedCopyCount: {
         type: Number,
     },
     publishedAt: {
