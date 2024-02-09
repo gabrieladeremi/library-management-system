@@ -6,6 +6,8 @@ const app = express();
 
 const { db } = require('./connection/mongoDb');
 
+const authRoutes = require('./routes/auth');
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -23,6 +25,8 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
     return res.send('Welcome to easyfundraising Library Management System Service');
 });
+
+app.use('/api/auth', authRoutes);
 
 app.use((error, req, res, next) => {
     const statusCode = error.statusCode || 500;
