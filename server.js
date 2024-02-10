@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 
 const { db } = require('./connection/mongoDb');
+const swaggerDocs = require('./utils/sawgger');
 
 const authRoutes = require('./routes/auth');
 const authorRoutes = require('./routes/author');
@@ -50,6 +51,8 @@ app.use((error, req, res, next) => {
 db.then(() => {
     app.listen(process.env.PORT, () => {
         console.log(`Server listening on ${process.env.PORT}`);
+
+        swaggerDocs(app, process.env.PORT);
     });
 });
 
