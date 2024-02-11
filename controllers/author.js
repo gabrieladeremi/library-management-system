@@ -1,4 +1,4 @@
-const { NotFoundError } = require("../response/responseMessage");
+const { BadRequestError } = require("../response/responseMessage");
 const AppSuccess = require("../response/responseProcessor");
 
 const {
@@ -14,7 +14,7 @@ const create = async (req, res, next) => {
         const { fullName, dateOfBirth, nationality, biography } = req.body;
 
         if (!fullName ) {
-            throw new NotFoundError('Your details are Incomplete');
+            throw new BadRequestError('Your details are Incomplete');
         }
         
         const newAuthor = await createAuthorService(fullName, dateOfBirth, nationality, biography);

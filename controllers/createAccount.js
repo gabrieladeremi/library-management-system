@@ -1,4 +1,4 @@
-const { NotFoundError } = require("../response/responseMessage");
+const { BadRequestError } = require("../response/responseMessage");
 const AppSuccess = require("../response/responseProcessor");
 
 const { createBorrowerAccountService } = require("../services/index");
@@ -8,7 +8,7 @@ const borrowerAccount = async (req, res, next) => {
         const { fullName, email, address, phoneNumber, password, confirmPassword } = req.body;
 
         if (!fullName || !email || !address || !phoneNumber || !password || !confirmPassword) {
-            throw new NotFoundError('Your details are Incomplete');
+            throw new BadRequestError('Your details are Incomplete');
         }
         await createBorrowerAccountService(fullName, email, address, phoneNumber, password);
 

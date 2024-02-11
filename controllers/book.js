@@ -1,4 +1,4 @@
-const { NotFoundError } = require("../response/responseMessage");
+const { BadRequestError } = require("../response/responseMessage");
 const AppSuccess = require("../response/responseProcessor");
 
 const {
@@ -14,7 +14,7 @@ const create = async (req, res, next) => {
         const { authorId, title, description, isbn, genre, publishedDate, publisher, copies } = req.body;
         
         if (!authorId ||!title || !isbn || !publishedDate || !copies) {
-            throw new NotFoundError('Your details are Incomplete');
+            throw new BadRequestError('Your details are Incomplete');
         }
 
         const newBook = await createBookService(authorId, title, description, isbn, genre, publishedDate, publisher, copies);
