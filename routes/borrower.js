@@ -43,6 +43,17 @@ router.post('/create', verifyToken, create);
  *     tags:
  *       - List of Books Borrowers
  *     summary: List all books borrowed
+ *     parameters:
+ *       - name: limit
+ *         in: query
+ *         type: number
+ *         required: false
+ *         description: limit for pagination
+ *       - name: page
+ *         in: query
+ *         type: number
+ *         required: false
+ *         description: page number
  *     security:
  *       - bearerAuth: [] # Bearer token is required for this endpoint
  *     responses:
