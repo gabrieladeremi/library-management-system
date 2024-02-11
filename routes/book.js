@@ -47,6 +47,15 @@ router.post('/create', validateSchema(bookSchema), verifyAdminToken, create);
  *     tags:
  *       - List Books
  *     summary: List all books
+ *     parameters:
+ *       - name: limit
+ *         in: query
+ *         type: number
+ *         description: limit for pagination
+ *       - name: page
+ *         in: query
+ *         type: number
+ *         description: page number
  *     responses:
  *       200:
  *         description: OK

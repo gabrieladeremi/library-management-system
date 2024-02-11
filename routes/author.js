@@ -47,6 +47,15 @@ router.post('/create', validateSchema(authorSchema), verifyAdminToken, create);
  *     tags:
  *       - List Authors
  *     summary: List all authors
+ *     parameters:
+ *       - name: page
+ *         in: query
+ *         type: number
+ *         description: Page number
+ *       - name: limit
+ *         in: query
+ *         type: number
+ *         description: Number of items per page
  *     responses:
  *       200:
  *         description: OK
