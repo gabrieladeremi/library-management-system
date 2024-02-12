@@ -26,26 +26,6 @@ Authorization: The authorization method employed is a Role Based Access Control(
 Swagger API: http://localhost:8080/api-docs/#/
 Postman link: https://documenter.getpostman.com/view/26719953/2sA2r3Z69r
 
-<!--
-title: 'AWS NodeJS Example'
-description: 'This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework.'
-layout: Doc
-framework: v3
-platform: AWS
-language: nodeJS
-priority: 1
-authorLink: 'https://github.com/serverless'
-authorName: 'Serverless, inc.'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
--->
-
-
-# Serverless Framework AWS NodeJS Example
-
-This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework. The deployed function does not include any event definitions as well as any kind of persistence (database). For more advanced configurations check out the [examples repo](https://github.com/serverless/examples/) which includes integrations with SQS, DynamoDB or examples of functions that are triggered in `cron`-like manner. For details about configuration of specific `events`, please refer to our [documentation](https://www.serverless.com/framework/docs/providers/aws/events/).
-
-## Usage
-
 ### Deployment
 
 In order to deploy the example, you need to run the following command:
@@ -57,29 +37,16 @@ $ serverless deploy
 After running deploy, you should see output similar to:
 
 ```bash
-Deploying aws-node-project to stage dev (us-east-1)
+Deploying easyfundraising-lms-serverless-api-dev to stage dev (us-east-1)
 
-✔ Service deployed to stack aws-node-project-dev (112s)
-
-functions:
-  hello: aws-node-project-dev-hello (1.5 kB)
-```
+✔ Service deployed to easyfundraising-lms-serverless-api-dev (112s)
 
 ### Invocation
 
 After successful deployment, you can invoke the deployed function by using the following command:
 
 ```bash
-serverless invoke --function hello
-```
-
-Which should result in response similar to the following:
-
-```json
-{
-    "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": {}\n}"
-}
+serverless invoke --function register
 ```
 
 ### Local development
@@ -90,12 +57,22 @@ You can invoke your function locally by using the following command:
 serverless invoke local --function hello
 ```
 
-Which should result in response similar to the following:
+### Running Locally
 
-```
-{
-    "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
-}
-```
+You can run this API locally by cloning this respository using any of your choice IDE, 
+run npm install, 
+run npm start to start the server after setting your port
+Follow the swagger or postman documentation to access resources available on the API.
+
+### Assumptions Made
+I assumed there is a need for an admin user to exist for creating, updating and deleting information as this cannot be done by a borrower.
+I assumed there is a need to limit the amount of books to be borrowed a user for the sake of accountability and easy tracking of borrowed books
+I assumed a borrower record cannot be deleted if such user still has a borrowed book in possession, this is essential to ensure proper tracking of books witinin the system
+
+I chose to use MongoDB as for database for the following reasons:
+    1. Flexible Schema: MongoDB is a NoSQL database, which means it does not require a predefined schema like MySQL. In a library management system where the data structure might evolve over time, MongoDB's flexible schema allows for easier adaptation to changing requirements without needing to modify existing schemas or migrate data.
+    2. Document-Oriented: MongoDB stores data in JSON-like documents, which can represent complex structures and nested data. This document-oriented model aligns well with the hierarchical nature of library data, where books may have multiple authors, genres, or editions, and can be more natural to work with than relational tables in MySQL.
+    3. Scalability: MongoDB is designed to scale horizontally across distributed clusters, making it suitable for handling large volumes of data and high traffic loads. In a library management system with a growing collection of books and users, MongoDB's scalability features can provide better performance and availability compared to MySQL, especially in cloud environments.
+    4. Query Flexibility: MongoDB's query language allows for rich and expressive queries, including support for nested documents, array operations, and geospatial queries. This flexibility can be advantageous for complex querying requirements in a library management system, such as searching for books based on multiple criteria, filtering by author or genre, or performing full-text search.
+    5. Ease of Development: MongoDB's schema-less nature and flexible data model can simplify development and reduce the need for complex join operations or data normalization. Developers can focus more on application logic and less on database schema design and maintenance, leading to faster development cycles and greater agility.
 
