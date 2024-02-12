@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 
 const { db } = require('./connection/mongoDb');
-const swaggerDocs = require('./utils/sawgger');
+const swaggerDocs = require('./utils/swagger');
 
 const authRoutes = require('./routes/auth');
 const authorRoutes = require('./routes/author');
