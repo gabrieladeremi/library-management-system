@@ -1,0 +1,135 @@
+service: easyfundraising-lms-serverless-api
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+
+functions:
+  register:
+    handler: handler.register
+    events:
+      - http: 
+          path: /api/auth/register
+          method: POST
+          cors: true
+  login:
+    handler: handler.login
+    events:
+      - http: 
+          path: /api/auth/login
+          method: POST
+          cors: true
+  createBorrower:
+    handler: handler.createBorrower
+    events:
+      - http: 
+          path: /api/borrower/create
+          method: POST
+          cors: true
+  createAuthor:
+    handler: handler.createAuthor
+    events:
+      - http: 
+          path: /api/author/create
+          method: POST
+          cors: true
+  getAuthors:
+    handler: handler.getAuthors
+    events:
+      - http: 
+          path: /api/author/list
+          method: GET
+          cors: true
+  getAuthor:
+    handler: handler.getAuthor
+    events:
+      - http: 
+          path: /api/author/{id}
+          method: GET
+          cors: true
+  updateAuthor:
+    handler: handler.updateAuthor
+    events:
+      - http: 
+          path: /api/author/{id}
+          method: PUT
+          cors: true
+  deleteAuthor:
+    handler: handler.deleteAuthor
+    events:
+      - http: 
+          path: /api/author/{id}
+          method: DELETE
+          cors: true
+  createBook:
+    handler: handler.createBook
+    events:
+      - http: 
+          path: /api/book/create
+          method: POST
+          cors: true
+  getBooks:
+    handler: handler.getBooks
+    events:
+      - http: 
+          path: /api/book/list
+          method: GET
+          cors: true
+  getBook:
+    handler: handler.getBook
+    events:
+      - http: 
+          path: /api/book/{id}
+          method: GET
+          cors: true
+  updateBook:
+    handler: handler.updateBook
+    events:
+      - http: 
+          path: /api/book/{id}
+          method: PUT
+          cors: true
+  deleteBook:
+    handler: handler.deleteBook
+    events:
+      - http: 
+          path: /api/book/{id}
+          method: DELETE
+          cors: true
+  createBorrow:
+    handler: handler.createBorrow
+    events:
+      - http: 
+          path: /api/borrower/create
+          method: POST
+          cors: true
+  getBorrowers:
+    handler: handler.getBorrowers
+    events:
+      - http: 
+          path: /api/borrower/list
+          method: GET
+          cors: true
+  getBorrower:
+    handler: handler.getBorrower
+    events:
+      - http: 
+          path: /api/borrower/{id}
+          method: GET
+          cors: true
+  updateBorrower:
+    handler: handler.updateBorrower
+    events:
+      - http: 
+          path: /api/borrower/{id}
+          method: PUT
+          cors: true
+  deleteBorrower:
+    handler: handler.deleteBorrower
+    events:
+      - http: 
+          path: /api/borrower/{id}
+          method: DELETE
+          cors: true
